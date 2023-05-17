@@ -19,9 +19,9 @@ public Polynomial add(Polynomial p1) {
 		result[j] = p1.coefficients[j] + coefficients[j];
 	}
 	for (int i = len; i < maxlen; i++) {
-            if (co1len > co2len) {
+        	if (co1len > co2len) {
                 result[i] = p1.coefficients[i];
-            }
+            	}
 		else {
                 result[i] = coefficients[i];
 		}
