@@ -11,14 +11,14 @@ public class Polynomial {
 	public Polynomial add(Polynomial p1) {
 		int co1len = p1.coefficients.length;
 		int co2len = coefficients.length;
-		int len = Math.min(co1len, co2len);
+		int minlen = Math.min(co1len, co2len);
 		int maxlen = Math.max(co1len, co2len);
 		double result[];
 		result = new double[maxlen];
-		for(int j = 0; j < len; j++){
+		for(int j = 0; j < minlen; j++){
 			result[j] = p1.coefficients[j] + coefficients[j];
 		}
-		for (int i = len; i < maxlen; i++) {
+		for (int i = minlen; i < maxlen; i++) {
 			if (co1len > co2len) {
 			result[i] = p1.coefficients[i];
 			}
