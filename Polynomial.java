@@ -1,7 +1,7 @@
 public class Polynomial {
-	double coefficients[]= new double[5];
+	double coefficients[];
 	public Polynomial() {
-		int length = coefficients.length;
+		coefficients = new double[0];
 	}
 	public Polynomial(double array[]){
 		for(int i = 0; i < array.length; i++){
