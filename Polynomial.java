@@ -1,10 +1,11 @@
 public class Polynomial {
 	double coefficients[];
 	public Polynomial() {
-		coefficients = new double[0];
+		coefficients = new double[1];
 	}
 	public Polynomial(double array[]){
-		for(int i = 0; i < array.length; i++){
+		coefficients = new double[array.length];
+		for (int i = 0; i < array.length; i++){
 			coefficients[i] = array[i];
 		}
 	}
@@ -30,7 +31,7 @@ public class Polynomial {
 	}
 	public double evaluate(double x){
 		double result = 0.0;
-		for(int i = 1; i < coefficients.length; i++){
+		for (int i = 1; i < coefficients.length; i++){
 			result = result + coefficients[i]*Math.pow(x, i);
 		}
 		return result + coefficients[0];
