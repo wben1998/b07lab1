@@ -1,12 +1,15 @@
 public class Polynomial {
 	double coefficients[];
+	int powers[];
 	public Polynomial() {
 		coefficients = new double[1];
+		power = new int[1];
 	}
-	public Polynomial(double array[]){
+	public Polynomial(double array[], int array_2[]){
 		coefficients = new double[array.length];
 		for (int i = 0; i < array.length; i++){
 			coefficients[i] = array[i];
+			powers[i] = array_2[i];
 		}
 	}
 	public Polynomial add(Polynomial p1) {
