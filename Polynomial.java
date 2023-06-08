@@ -2,16 +2,62 @@ public class Polynomial {
 	double coefficients[];
 	int powers[];
 	public Polynomial() {
-		coefficients = new double[1];
-		power = new int[1];
+		this.coefficients = null;
+		this.powers = null;
 	}
-	public Polynomial(double array[], int array_2[]){
-		coefficients = new double[array.length];
-		for (int i = 0; i < array.length; i++){
-			coefficients[i] = array[i];
-			powers[i] = array_2[i];
+	public Polynomial(double coefficients[], int powers[]){
+		this.coefficients = coefficients;
+		this.powers = powers;
+	}
+	
+	public Polynomial(File file) throws FileNotFoundException{
+		Scanner myScanner = new Scanner(file);
+		
+		if(!myScanner.hasNextLine()){
+			this.coeffficeints = null;
+			this.powers = null;
 		}
+		
+		else{
+			String line = myScanner.nextLine();
+			line = line.replace("-","+-");
+			String[] poly_arr = line.split("\\+");
+			this.powers = new int[poly_arr.length];
+			this.coefficients = new double[poly_arr.length];
+			for(int i = 0; i < poly_arr.length; i++){
+				String[] subArray = poly_arr[i].split("x");
+				coefficients[i] = Doube.parseDouble(subArray[0]);
+				
+				if (subArray.length > 1){
+					powers[i] = Integer.parseInt(subArray[i]);
+				}
+				else {
+					powers[i] = 0;
+				}
+			}
+		}
+		
 	}
+	
+	public void saveToFile(String myFile){
+		if(this.coefficients == null || this.powers == null) return; //also check for unequal lengths
+		String writeString = "";
+		
+		for (int i = 0; i < this.coefficients.length; i++){
+			writeString += cofficeints[i];
+			if (powers[i] != 0){
+				writeString += "x" + powers[i];
+			}
+			writeString += "+";
+		}
+		if(writeString.endsWith("+"){
+			writeString = writeString.substring(0, writeString.length-1));	
+		}
+		FileWriter myWriter = new FileWriter(new File(myFile);
+		myWriter.write(writeString);
+		myWriter.close();
+	}
+	
 	public Polynomial add(Polynomial p1) {
 		int co1len = p1.coefficients.length;
 		int co2len = coefficients.length;
