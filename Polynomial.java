@@ -78,28 +78,28 @@ public class Polynomial {
 		int k = 0;
 
         while (i < len1 && j < len2) {
-            if (powers[i] == p1powers[j]) { //equal power
+		if (powers[i] == p1powers[j]) { //equal power
                 double sum = coefficients[i] + p1Coefficients[j];
-                if (sum != 0) {
-                    resultcoefficients[k] = sum;
-                    resultpowers[k] = powers[i];
-                    k++;
-                }
-                i++;
-                j++;
-            } 
-			else if (powers[i] < p1powers[j]) { //power less in calling object
+			if (sum != 0) {
+			    resultcoefficients[k] = sum;
+			    resultpowers[k] = powers[i];
+			    k++;
+			}
+			i++;
+			j++;
+		} 
+		else if (powers[i] < p1powers[j]) { //power less in calling object
                 resultcoefficients[k] = coefficients[i];
                 resultpowers[k] = powers[i];
                 k++;
                 i++;
-            } 
-			else { //power more in calling object
+            	} 
+		else { //power more in calling object
                 resultcoefficients[k] = p1Coefficients[j];
                 resultpowers[k] = p1powers[j];
                 k++;
                 j++;
-            }
+            	}
         }
 
         while (i < len1) { //finish going though calling object coefficients
