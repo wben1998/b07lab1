@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class Polynomial {
 	public double coefficients[];
 	public int powers[];
+
 	public Polynomial() {
 		this.coefficients = null;
 		this.powers = null;
 	}
+
 	public Polynomial(double coefficients[], int powers[]){
 		this.coefficients = coefficients;
 		this.powers = powers;
@@ -42,13 +44,49 @@ public class Polynomial {
 		}
 		
 	}
+
+	public int[] remove_zeros (int arr[]){
+		int count = 0;
+		for (int i = 0; i < arr.length ; i++){
+			if (arr[i] != 0){
+				count++;
+			}
+		}	
+		int j = 0;
+		int copy[] = new int[count];
+		for (int i = 0; i < arr.length ; i++){
+			if (arr[i] != 0){
+				copy[j] = arr[i];
+				j++;
+			}
+		}
+		return copy;
+	}
+
+
+	public double[] remove_zeros (double arr[]){
+		int count = 0;
+		for (int i = 0; i < arr.length ; i++){
+			if (arr[i] != 0){
+				count++;
+			}
+		}	
+		int j = 0;
+		double copy[] = new double[count];
+		for (int i = 0; i < arr.length ; i++){
+			if (arr[i] != 0){
+				copy[j] = arr[i];
+				j++;
+			}
+		}
+		return copy;
+	}
 	
 	public void saveToFile(String myFile) throws Exception{
 		if(this.coefficients == null || this.powers == null || this.coefficients.length != this.powers.length) return; //check to see it valid lengths and non-void
 		String writeString = "";
-		
 		for (int i = 0; i < this.coefficients.length; i++){
-			writeString += coefficients[i]; 
+			writeString += coefficients[i];
 			if (powers[i] != 0){
 				writeString += "x" + powers[i];
 			}
@@ -63,11 +101,11 @@ public class Polynomial {
 	}
 
 	public Polynomial add(Polynomial p1) {
-		double[] p1Coefficients = p1.coefficients;
+		double[] p1coefficients = p1.coefficients;
         int[] p1powers = p1.powers;
 
         int len1 = coefficients.length;
-        int len2 = p1Coefficients.length;
+        int len2 = p1coefficients.length;
 
         int resultLen = len1 + len2;
         double[] resultcoefficients = new double[resultLen];
@@ -78,6 +116,19 @@ public class Polynomial {
 		int k = 0;
 
         while (i < len1 && j < len2) {
+<<<<<<< HEAD
+            if (powers[i] == p1powers[j]) { //equal power
+                double sum = coefficients[i] + p1coefficients[j];
+                if (sum != 0) {
+                    resultcoefficients[k] = sum;
+                    resultpowers[k] = powers[i];
+                    k++;
+                }
+                i++;
+                j++;
+            } 
+			else if (powers[i] < p1powers[j]) { //power less in calling object
+=======
 		if (powers[i] == p1powers[j]) { //equal power
                 double sum = coefficients[i] + p1Coefficients[j];
 			if (sum != 0) {
@@ -89,13 +140,20 @@ public class Polynomial {
 			j++;
 		} 
 		else if (powers[i] < p1powers[j]) { //power less in calling object
+>>>>>>> 9d3e1d25d3196ee9adf30991f21daa120a30c166
                 resultcoefficients[k] = coefficients[i];
                 resultpowers[k] = powers[i];
                 k++;
                 i++;
+<<<<<<< HEAD
+            } 
+			else { //power more in calling object
+                resultcoefficients[k] = p1coefficients[j];
+=======
             	} 
 		else { //power more in calling object
                 resultcoefficients[k] = p1Coefficients[j];
+>>>>>>> 9d3e1d25d3196ee9adf30991f21daa120a30c166
                 resultpowers[k] = p1powers[j];
                 k++;
                 j++;
@@ -109,29 +167,45 @@ public class Polynomial {
             i++;
         }
 
-        while (j < len2) { //finish going through input coefficients
-            resultcoefficients[k] = p1Coefficients[j];
+        while (j < len2) { //finish going through argument coefficients
+            resultcoefficients[k] = p1coefficients[j];
             resultpowers[k] = p1powers[j];
             k++;
             j++;
         }
-
-        double[] finalcoefficients = new double[k];
-        int[] finalpowers = new int[k];
-        System.arraycopy(resultcoefficients, 0, finalcoefficients, 0, k);
-        System.arraycopy(resultpowers, 0, finalpowers, 0, k);
-
-        return new Polynomial(finalcoefficients, finalpowers);
+		return new Polynomial(remove_zeros(resultcoefficients), remove_zeros(resultpowers)); //return polynomial with removed 0 terms
     }
 
+	public Polynomial multiply(Polynomial p1) {
+		double[] p1coefficients = p1.coefficients;
+        int[] p1powers = p1.powers;
 
-	public double evaluate(double x){
+        int len1 = coefficients.length;
+        int len2 = p1coefficients.length;
+
+        int resultLen = len1 + len2 - 1;
+        double[] resultcoefficients = new double[resultLen];
+        int[] resultpowers = new int[resultLen];
+		int k = 0;
+
+		for (int i = 0; i < len1; i++) {
+			for (int j = 0; j < len2; j++) {
+				int power = powers[i] + p1powers[j]; //product of two x^a and x^b is x^(a+b)
+				resultcoefficients[power] +=  coefficients[i] * p1coefficients[j]; //multiply each pair of coefficients for each power
+				resultpowers[power] = power; //set resulting power array to power
+			}
+		}
+    	return new Polynomial(resultcoefficients, resultpowers);
+	}
+
+	public double evaluate(double x) {
 		double result = 0.0;
 		for (int i = 1; i < coefficients.length; i++){
 			result = result + coefficients[i]*Math.pow(x, powers[i]);
 		}
 		return result + coefficients[0];
 	}
+
 	public boolean hasRoot(double x) {
 		return evaluate(x) == 0;
 	}
