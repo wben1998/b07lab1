@@ -101,7 +101,7 @@ public class Polynomial {
 	}
 
 	public Polynomial add(Polynomial p1) {
-		double[] p1coefficients = p1.coefficients;
+	double[] p1coefficients = p1.coefficients;
         int[] p1powers = p1.powers;
 
         int len1 = coefficients.length;
@@ -155,11 +155,11 @@ public class Polynomial {
             k++;
             j++;
         }
-		return new Polynomial(remove_zeros(resultcoefficients), remove_zeros(resultpowers)); //return polynomial with removed 0 terms
+	return new Polynomial(remove_zeros(resultcoefficients), remove_zeros(resultpowers)); //return polynomial with removed 0 terms
     }
 
 	public Polynomial multiply(Polynomial p1) {
-		double[] p1coefficients = p1.coefficients;
+	double[] p1coefficients = p1.coefficients;
         int[] p1powers = p1.powers;
 
         int len1 = coefficients.length;
@@ -168,15 +168,14 @@ public class Polynomial {
         int resultLen = len1 + len2 - 1;
         double[] resultcoefficients = new double[resultLen];
         int[] resultpowers = new int[resultLen];
-		int k = 0;
-
-		for (int i = 0; i < len1; i++) {
-			for (int j = 0; j < len2; j++) {
-				int power = powers[i] + p1powers[j]; //product of two x^a and x^b is x^(a+b)
-				resultcoefficients[power] +=  coefficients[i] * p1coefficients[j]; //multiply each pair of coefficients for each power
-				resultpowers[power] = power; //set resulting power array to power
-			}
+	int k = 0;
+	for (int i = 0; i < len1; i++) {
+		for (int j = 0; j < len2; j++) {
+			int power = powers[i] + p1powers[j]; //product of two x^a and x^b is x^(a+b)
+			resultcoefficients[power] +=  coefficients[i] * p1coefficients[j]; //multiply each pair of coefficients for each power
+			resultpowers[power] = power; //set resulting power array to power
 		}
+	}
     	return new Polynomial(resultcoefficients, resultpowers);
 	}
 
