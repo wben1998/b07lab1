@@ -112,8 +112,8 @@ public class Polynomial {
         int[] resultpowers = new int[resultLen];
 
         int i = 0;
-		int j = 0;
-		int k = 0;
+	int j = 0;
+	int k = 0;
 
         while (i < len1 && j < len2) {
 
