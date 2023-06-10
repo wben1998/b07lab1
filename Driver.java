@@ -51,7 +51,7 @@ public class Driver {
 			System.out.println(e);
 		}
 
-		double p4_c[] = {-1,-2, -3, -4,-5};
+		double p4_c[] = {-1, -2, -3, -4, -5};
 		int p4_p[] = {0, 1, 2, 3, 4};
 		Polynomial p4 = new Polynomial(p4_c, p4_p);
 		Polynomial sum2 = p1.add(p4);
