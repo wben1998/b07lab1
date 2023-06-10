@@ -43,12 +43,52 @@ public class Driver {
 		double p3_c[] = {-2, -3, -4};
 		int p3_p[] = {1, 2, 3};
 		Polynomial p3 = new Polynomial(p3_c, p3_p);
-		Polynomial sum = p1.add(p3);
+		Polynomial sum1 = p1.add(p3);
 		try{
-			sum.saveToFile("sum.txt");
+			sum1.saveToFile("sum1.txt");
 		}
 		catch(Exception e){
 			System.out.println(e);
 		}
+
+		double p4_c[] = {-1,-2, -3, -4,-5};
+		int p4_p[] = {0, 1, 2, 3, 4};
+		Polynomial p4 = new Polynomial(p4_c, p4_p);
+		Polynomial sum2 = p1.add(p4);
+		try{
+			sum2.saveToFile("sum2.txt");
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+		double p5_c[] = {2,2};
+		int p5_p[] = {1,0};
+		Polynomial p5 = new Polynomial(p5_c, p5_p);
+
+		double p6_c[] = {1,2};
+		int p6_p[] = {0, 1};
+		Polynomial p6 = new Polynomial(p6_c, p6_p);
+
+		Polynomial prod1 = p5.multiply(p6);
+		try{
+			prod1.saveToFile("prod1.txt");
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+
+		double p7_c[] = {1,-2};
+		int p7_p[] = {0, 1};
+		Polynomial p7 = new Polynomial(p7_c, p7_p);
+
+		Polynomial prod2 = p7.multiply(p6);
+		try{
+			prod2.saveToFile("prod2.txt");
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+
+
 	}
 }
