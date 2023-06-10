@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Polynomial {
 	public double coefficients[];
 	public int powers[];
-	
+
 	public Polynomial() {
 		this.coefficients = null;
 		this.powers = null;
@@ -116,7 +116,6 @@ public class Polynomial {
 		int k = 0;
 
         while (i < len1 && j < len2) {
-<<<<<<< HEAD
             if (powers[i] == p1powers[j]) { //equal power
                 double sum = coefficients[i] + p1coefficients[j];
                 if (sum != 0) {
@@ -128,32 +127,13 @@ public class Polynomial {
                 j++;
             } 
 			else if (powers[i] < p1powers[j]) { //power less in calling object
-=======
-		if (powers[i] == p1powers[j]) { //equal power
-                double sum = coefficients[i] + p1Coefficients[j];
-			if (sum != 0) {
-			    resultcoefficients[k] = sum;
-			    resultpowers[k] = powers[i];
-			    k++;
-			}
-			i++;
-			j++;
-		} 
-		else if (powers[i] < p1powers[j]) { //power less in calling object
->>>>>>> 9d3e1d25d3196ee9adf30991f21daa120a30c166
                 resultcoefficients[k] = coefficients[i];
                 resultpowers[k] = powers[i];
                 k++;
                 i++;
-<<<<<<< HEAD
             } 
 			else { //power more in calling object
                 resultcoefficients[k] = p1coefficients[j];
-=======
-            	} 
-		else { //power more in calling object
-                resultcoefficients[k] = p1Coefficients[j];
->>>>>>> 9d3e1d25d3196ee9adf30991f21daa120a30c166
                 resultpowers[k] = p1powers[j];
                 k++;
                 j++;
